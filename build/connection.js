@@ -14,4 +14,4 @@ createConnection({
 })
     .then(function () { return console.log("Conectado"); })
     .catch(function (error) { return console.error(error); });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=connection.js.map
