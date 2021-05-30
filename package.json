@@ -8,7 +8,7 @@
         "@typescript-eslint/eslint-plugin": "^4.25.0",
         "@typescript-eslint/parser": "^4.25.0",
         "eslint": "^7.27.0",
-        "ts-node": "3.3.0",
+        "ts-node": "^3.3.0",
         "typescript": "3.3.3333"
     },
     "dependencies": {
