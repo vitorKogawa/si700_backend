@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,45 +8,46 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Column, BeforeInsert, BeforeUpdate, PrimaryColumn, } from "typeorm";
-import { hashSync } from "bcryptjs";
+Object.defineProperty(exports, "__esModule", { value: true });
+var typeorm_1 = require("typeorm");
+var bcryptjs_1 = require("bcryptjs");
 var User = /** @class */ (function () {
     function User() {
     }
     User.prototype.hashPassword = function () {
-        hashSync(this.password, 8);
+        bcryptjs_1.hashSync(this.password, 8);
     };
     __decorate([
-        PrimaryColumn(),
+        typeorm_1.PrimaryColumn(),
         __metadata("design:type", String)
     ], User.prototype, "id", void 0);
     __decorate([
-        Column(),
+        typeorm_1.Column(),
         __metadata("design:type", String)
     ], User.prototype, "firstName", void 0);
     __decorate([
-        Column(),
+        typeorm_1.Column(),
         __metadata("design:type", String)
     ], User.prototype, "lastName", void 0);
     __decorate([
-        Column(),
+        typeorm_1.Column(),
         __metadata("design:type", String)
     ], User.prototype, "email", void 0);
     __decorate([
-        Column(),
+        typeorm_1.Column(),
         __metadata("design:type", String)
     ], User.prototype, "password", void 0);
     __decorate([
-        BeforeInsert(),
-        BeforeUpdate(),
+        typeorm_1.BeforeInsert(),
+        typeorm_1.BeforeUpdate(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)
     ], User.prototype, "hashPassword", null);
     User = __decorate([
-        Entity()
+        typeorm_1.Entity()
     ], User);
     return User;
 }());
-export { User };
+exports.User = User;
 //# sourceMappingURL=User.js.map

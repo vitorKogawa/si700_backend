@@ -1,7 +1,7 @@
-import * as express from "express";
+import express from "express";
 import { routes } from "./routes/routes";
-import * as helmet from "helmet";
-import * as cors from "cors";
+import helmet from "helmet";
+import cors from "cors";
 import "./connection";
 
 const app = express();
