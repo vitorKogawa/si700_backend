@@ -1,4 +1,4 @@
-import { app } from "./App";
+import { app } from "./app";
 import "./config/env.config";
 
 const port = parseInt(process.env.PORT);

@@ -49,5 +49,5 @@ var User = /** @class */ (function () {
     ], User);
     return User;
 }());
-exports.User = User;
+exports.default = User;
 //# sourceMappingURL=User.js.map

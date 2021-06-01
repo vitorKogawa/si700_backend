@@ -8,7 +8,7 @@ import {
 import { hashSync } from "bcryptjs";
 
 @Entity()
-export class User {
+class User {
   @PrimaryColumn()
   id: string;
 
@@ -24,9 +24,14 @@ export class User {
   @Column()
   password: string;
 
+  @Column({ default: false })
+  isEnabled: boolean;
+
   @BeforeInsert()
   @BeforeUpdate()
-  hashPassword() {
-    hashSync(this.password, 8);
+  hashPassword(): void {
+    this.password = hashSync(this.password, 8);
   }
 }
+
+export { User };

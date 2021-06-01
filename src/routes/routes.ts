@@ -1,9 +1,10 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import { sharedRoutes } from "./shared.routes";
+import { privateRoutes } from "./private.routes";
 
 const routes = Router();
 
-routes.get("/teste", (request: Request, response: Response) =>
-  response.send("<h2>rota teste<h2>")
-);
+routes.use("/shared", sharedRoutes);
+routes.use("/private", privateRoutes);
 
 export { routes };

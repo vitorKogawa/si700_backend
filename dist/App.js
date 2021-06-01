@@ -16,4 +16,4 @@ app.use(helmet_1.default());
 app.use(express_1.default.json());
 //routes
 app.use(routes_1.routes);
-//# sourceMappingURL=App.js.map
+//# sourceMappingURL=app.js.map
