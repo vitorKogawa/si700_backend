@@ -15,7 +15,7 @@ var User = /** @class */ (function () {
     function User() {
     }
     User.prototype.hashPassword = function () {
-        bcryptjs_1.hashSync(this.password, 8);
+        this.password = bcryptjs_1.hashSync(this.password, 8);
     };
     __decorate([
         typeorm_1.PrimaryColumn(),
@@ -38,6 +38,10 @@ var User = /** @class */ (function () {
         __metadata("design:type", String)
     ], User.prototype, "password", void 0);
     __decorate([
+        typeorm_1.Column({ default: false }),
+        __metadata("design:type", Boolean)
+    ], User.prototype, "isEnabled", void 0);
+    __decorate([
         typeorm_1.BeforeInsert(),
         typeorm_1.BeforeUpdate(),
         __metadata("design:type", Function),
@@ -49,5 +53,5 @@ var User = /** @class */ (function () {
     ], User);
     return User;
 }());
-exports.default = User;
+exports.User = User;
 //# sourceMappingURL=User.js.map

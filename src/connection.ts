@@ -14,8 +14,8 @@ createConnection({
   },
   synchronize: false,
   logging: true,
-  entities: ["src/entity/**/*.ts"],
-  migrations: ["src/migration/**/*.ts"],
+  entities: ["dist/entity/**/*.js"],
+  migrations: ["dist/migration/**/*.js"],
 })
   .then(() => console.log("Conectado"))
   .catch((error) => console.error(error));
