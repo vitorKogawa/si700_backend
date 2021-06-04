@@ -1,14 +1,12 @@
 require("./src/config/env.config");
 
 module.exports = {
-    "type": "postgres",
-    "url": process.env.DATABASE_URL || "postgres://uwchhypexhmjsf:c82d00b314fb872bd0ad578c14d7a1759045710e3db83588b8b1ced3a73ebd2c@ec2-3-215-57-87.compute-1.amazonaws.com:5432/d6a1g732ta78ri",
-    "ssl": process.env.DATABASE_URL ? true : false,
-    "extra": {
-        "ssl": {
-            "rejectUnauthorized": false
-        }
-    },
+    "type": process.env.TYPEORM_TYPE,
+    "database": process.env.TYPEORM_DATABASE,
+    "username": process.env.TYPEORM_USERNAME,
+    "password": process.env.TYPEORM_PASSWORD,
+    "host": process.env.TYPEORM_HOST,
+    "port": 3306,
     "synchronize": false,
     "logging": true,
     "entities": [
