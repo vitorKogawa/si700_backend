@@ -5,6 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 import { User } from "../entity/User";
 
 class UserController {
+  /**
+   * Insere um usuário na base de dados
+   * @param request
+   * @param response
+   * @returns
+   */
   async store(request: Request, response: Response) {
     try {
       const userRepository = getRepository(User);
@@ -34,14 +40,27 @@ class UserController {
     }
   }
 
+  /**
+   * Busca todos os usuários cadastrados na base de dados
+   * @param request
+   * @param response
+   * @returns
+   */
   async findAll(request: Request, response: Response) {
     try {
       const userRepository = getRepository(User);
 
       const users = await userRepository
         .createQueryBuilder("user")
-        .select(["user.id", "user.firstName", "user.lastName", "user.email", "user.isEnabled"])
-        .orderBy("user.id", "DESC")
+        .select([
+          "user.id",
+          "user.firstName",
+          "user.lastName",
+          "user.email",
+          "user.isEnabled",
+        ])
+        .orderBy("user.firstName", "ASC")
+        .addOrderBy("user.lastName", "ASC")
         .getMany();
 
       if (users.length !== 0) {
@@ -57,6 +76,12 @@ class UserController {
     }
   }
 
+  /**
+   * Busca um determinado usuário na base de dados
+   * @param request
+   * @param response
+   * @returns
+   */
   async findByID(request: Request, response: Response) {
     try {
       if (!request.params.id)
@@ -66,7 +91,13 @@ class UserController {
 
       const user = await userRepository
         .createQueryBuilder("user")
-        .select(["user.id", "user.firstName", "user.lastName", "user.email", "user.isEnabled"])
+        .select([
+          "user.id",
+          "user.firstName",
+          "user.lastName",
+          "user.email",
+          "user.isEnabled",
+        ])
         .where("user.id = :id", { id: request.params.id })
         .getOne();
 
@@ -83,6 +114,12 @@ class UserController {
     }
   }
 
+  /**
+   * Habilita um usuário com base no id informado
+   * @param request
+   * @param response
+   * @returns
+   */
   async enableUserByID(request: Request, response: Response) {
     try {
       if (!request.params.id)
@@ -105,6 +142,12 @@ class UserController {
     }
   }
 
+  /**
+   * Desabilita um usuário com base no id informado
+   * @param request
+   * @param response
+   * @returns
+   */
   async disableUserByID(request: Request, response: Response) {
     try {
       if (!request.params.id)
