@@ -1,8 +1,9 @@
 import "./env.config";
+import { IJWTConfig } from  './../models/IJWTConfig'
 
 const jwtConfig = {
   secret: process.env.JWT_SECRET,
   salt: parseInt(process.env.JWT_SALT),
-} as { secret: string, salt: number };
+} as IJWTConfig;
 
 export { jwtConfig };
