@@ -6,6 +6,7 @@ import {
   PrimaryColumn,
 } from "typeorm";
 import { hashSync } from "bcryptjs";
+import { jwtConfig } from './../config/jwt.config';
 
 @Entity()
 class User {
@@ -30,7 +31,7 @@ class User {
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword(): void {
-    this.password = hashSync(this.password, 8);
+    this.password = hashSync(this.password, jwtConfig.salt);
   }
 }
 
