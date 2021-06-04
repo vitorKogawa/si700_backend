@@ -4,6 +4,8 @@ import {
   BeforeInsert,
   BeforeUpdate,
   PrimaryColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { hashSync } from "bcryptjs";
 import { jwtConfig } from './../config/jwt.config';
@@ -27,6 +29,12 @@ class User {
 
   @Column({ default: false })
   isEnabled: boolean;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   @BeforeInsert()
   @BeforeUpdate()
