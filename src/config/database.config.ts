@@ -1,6 +1,7 @@
 import "./env.config";
 import { ConnectionOptions } from 'typeorm'
 import { User } from "../entity/User";
+import fs from 'fs';
 
 /**
  * Configurações para ambiente de desenvolvimento
@@ -12,6 +13,9 @@ const development = {
   password: process.env.TYPEORM_PASSWORD,
   host: process.env.TYPEORM_HOST,
   port: 3306,
+  ssl:{
+    ca: fs.readFileSync(__dirname + './../database/certificate/ssl/ssl_ca.pem')
+  },
   synchronize: false,
   logging: true,
   entities: [User]

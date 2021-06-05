@@ -10,6 +10,7 @@ class AuthController {
   async auth(request: Request, response: Response) {
     const repository = getRepository(User);
     const { email, password } = request.body;
+    console.log(email, password);
 
     const user = await repository.findOne({ where: { email } });
     if (!user)
