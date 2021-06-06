@@ -1,7 +1,8 @@
 import "./env.config";
 import { ConnectionOptions } from 'typeorm'
 import { User } from "../entity/User";
-import fs from 'fs';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
 /**
  * Configurações para ambiente de desenvolvimento
@@ -14,7 +15,7 @@ const development = {
   host: process.env.TYPEORM_HOST,
   port: 3306,
   ssl:{
-    ca: fs.readFileSync(__dirname + './../database/certificate/ssl/ssl_ca.pem')
+    ca: readFileSync(resolve(__dirname, '..', 'database', 'certificate', 'ssl', 'ssl_ca.pem'))
   },
   synchronize: false,
   logging: true,
