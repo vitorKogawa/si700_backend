@@ -15,7 +15,8 @@
       "skipLibCheck": true
    },
    "include": [
-      "src"
+      "src",
+      "src/database"
    ],
    "exclude": [
       "**/*.spec.ts",
