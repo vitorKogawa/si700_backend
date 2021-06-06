@@ -41,6 +41,12 @@ var User_1 = require("../entity/User");
 var UserController = /** @class */ (function () {
     function UserController() {
     }
+    /**
+     * Insere um usuário na base de dados
+     * @param request
+     * @param response
+     * @returns
+     */
     UserController.prototype.store = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var userRepository, _a, firstName, lastName, email, password, isEnabled, userExists, newUser, error_1;
@@ -78,6 +84,12 @@ var UserController = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Busca todos os usuários cadastrados na base de dados
+     * @param request
+     * @param response
+     * @returns
+     */
     UserController.prototype.findAll = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var userRepository, users, error_2;
@@ -88,8 +100,15 @@ var UserController = /** @class */ (function () {
                         userRepository = typeorm_1.getRepository(User_1.User);
                         return [4 /*yield*/, userRepository
                                 .createQueryBuilder("user")
-                                .select(["user.id", "user.firstName", "user.lastName", "user.email", "user.isEnabled"])
-                                .orderBy("user.id", "DESC")
+                                .select([
+                                "user.id",
+                                "user.firstName",
+                                "user.lastName",
+                                "user.email",
+                                "user.isEnabled",
+                            ])
+                                .orderBy("user.firstName", "ASC")
+                                .addOrderBy("user.lastName", "ASC")
                                 .getMany()];
                     case 1:
                         users = _a.sent();
@@ -111,6 +130,12 @@ var UserController = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Busca um determinado usuário na base de dados
+     * @param request
+     * @param response
+     * @returns
+     */
     UserController.prototype.findByID = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var userRepository, user, error_3;
@@ -123,7 +148,13 @@ var UserController = /** @class */ (function () {
                         userRepository = typeorm_1.getRepository(User_1.User);
                         return [4 /*yield*/, userRepository
                                 .createQueryBuilder("user")
-                                .select(["user.id", "user.firstName", "user.lastName", "user.email", "user.isEnabled"])
+                                .select([
+                                "user.id",
+                                "user.firstName",
+                                "user.lastName",
+                                "user.email",
+                                "user.isEnabled",
+                            ])
                                 .where("user.id = :id", { id: request.params.id })
                                 .getOne()];
                     case 1:
@@ -146,6 +177,12 @@ var UserController = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Habilita um usuário com base no id informado
+     * @param request
+     * @param response
+     * @returns
+     */
     UserController.prototype.enableUserByID = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var userRepository, error_4;
@@ -176,6 +213,12 @@ var UserController = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Desabilita um usuário com base no id informado
+     * @param request
+     * @param response
+     * @returns
+     */
     UserController.prototype.disableUserByID = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var userRepository, error_5;

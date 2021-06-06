@@ -35,35 +35,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var createUserEntity1622395967294 = /** @class */ (function () {
-    function createUserEntity1622395967294() {
-        this.name = 'createUserEntity1622395967294';
+var typeorm_1 = require("typeorm");
+var User_1 = require("./../entity/User");
+var bcryptjs_1 = require("bcryptjs");
+var jsonwebtoken_1 = require("jsonwebtoken");
+var jwt_config_1 = require("./../config/jwt.config");
+var AuthController = /** @class */ (function () {
+    function AuthController() {
     }
-    createUserEntity1622395967294.prototype.up = function (queryRunner) {
+    AuthController.prototype.auth = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE \"user\" (\"id\" character varying NOT NULL, \"firstName\" character varying NOT NULL, \"lastName\" character varying NOT NULL, \"email\" character varying NOT NULL, \"password\" character varying NOT NULL, CONSTRAINT \"PK_cace4a159ff9f2512dd42373760\" PRIMARY KEY (\"id\"))")];
+            var repository, _a, email, password, user, _b, _c, isValidPassword, token;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
+                    case 0:
+                        repository = typeorm_1.getRepository(User_1.User);
+                        _a = request.body, email = _a.email, password = _a.password;
+                        console.log(email, password);
+                        return [4 /*yield*/, repository.findOne({ where: { email: email } })];
                     case 1:
-                        _a.sent();
-                        return [2 /*return*/];
+                        user = _d.sent();
+                        if (!user)
+                            return [2 /*return*/, response.json({
+                                    message: "Este usuário não está cadastrado na base de dados.",
+                                })];
+                        console.log(user, request.body);
+                        _c = (_b = console).log;
+                        return [4 /*yield*/, bcryptjs_1.compare(password, user.password)];
+                    case 2:
+                        _c.apply(_b, [_d.sent()]);
+                        return [4 /*yield*/, bcryptjs_1.compare(password, user.password)];
+                    case 3:
+                        isValidPassword = _d.sent();
+                        if (!isValidPassword)
+                            return [2 /*return*/, response.json({ message: "Senha incorreta." })];
+                        token = jsonwebtoken_1.sign({ id: user.id, email: user.email }, jwt_config_1.jwtConfig.secret, { expiresIn: "1d" });
+                        delete user.password;
+                        return [2 /*return*/, response.json({
+                                user: user,
+                                token: token,
+                            })];
                 }
             });
         });
     };
-    createUserEntity1622395967294.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("DROP TABLE \"user\"")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    return createUserEntity1622395967294;
+    return AuthController;
 }());
-exports.createUserEntity1622395967294 = createUserEntity1622395967294;
-//# sourceMappingURL=1622395967294-createUserEntity.js.map
+exports.default = new AuthController();
+//# sourceMappingURL=AuthController.js.map

@@ -35,15 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var addColumnIsEnabledinUserEntity1622510271581 = /** @class */ (function () {
-    function addColumnIsEnabledinUserEntity1622510271581() {
-        this.name = 'addColumnIsEnabledinUserEntity1622510271581';
+var createdEntities1622675520720 = /** @class */ (function () {
+    function createdEntities1622675520720() {
+        this.name = 'createdEntities1622675520720';
     }
-    addColumnIsEnabledinUserEntity1622510271581.prototype.up = function (queryRunner) {
+    createdEntities1622675520720.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE \"user\" ADD \"isEnabled\" boolean NOT NULL DEFAULT false")];
+                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE `user` (`id` varchar(255) NOT NULL, `firstName` varchar(255) NOT NULL, `lastName` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `password` varchar(255) NOT NULL, `isEnabled` tinyint NOT NULL DEFAULT 0, PRIMARY KEY (`id`)) ENGINE=InnoDB")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -51,11 +51,11 @@ var addColumnIsEnabledinUserEntity1622510271581 = /** @class */ (function () {
             });
         });
     };
-    addColumnIsEnabledinUserEntity1622510271581.prototype.down = function (queryRunner) {
+    createdEntities1622675520720.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE \"user\" DROP COLUMN \"isEnabled\"")];
+                    case 0: return [4 /*yield*/, queryRunner.query("DROP TABLE `user`")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -63,7 +63,7 @@ var addColumnIsEnabledinUserEntity1622510271581 = /** @class */ (function () {
             });
         });
     };
-    return addColumnIsEnabledinUserEntity1622510271581;
+    return createdEntities1622675520720;
 }());
-exports.addColumnIsEnabledinUserEntity1622510271581 = addColumnIsEnabledinUserEntity1622510271581;
-//# sourceMappingURL=1622510271581-addColumnIsEnabledinUserEntity.js.map
+exports.createdEntities1622675520720 = createdEntities1622675520720;
+//# sourceMappingURL=1622675520720-createdEntities.js.map
