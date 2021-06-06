@@ -1,6 +1,6 @@
 require("./src/config/env.config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const fs = require("fs");
+const { readFileSync } = require("fs");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { resolve } = require("path");
 
@@ -12,7 +12,7 @@ module.exports = {
     host: process.env.TYPEORM_HOST,
     port: 3306,
     ssl: {
-        ca: fs.readFileSync(resolve(__dirname, 'src', 'database', 'certificate', 'ssl', 'ssl_ca.pem')),
+        ca: readFileSync(resolve(__dirname, '..', '..', 'certificate', 'ssl', 'ssl_ca.pem'))
     },
     synchronize: false,
     logging: true,

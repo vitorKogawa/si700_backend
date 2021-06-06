@@ -15,7 +15,7 @@ const development = {
   host: process.env.TYPEORM_HOST,
   port: 3306,
   ssl:{
-    ca: readFileSync(resolve(__dirname, '..', 'database', 'certificate', 'ssl', 'ssl_ca.pem'))
+    ca: readFileSync(resolve(__dirname, '..', '..', 'certificate', 'ssl', 'ssl_ca.pem'))
   },
   synchronize: false,
   logging: true,
