@@ -15,7 +15,7 @@ var development = {
     host: process.env.TYPEORM_HOST,
     port: 3306,
     ssl: {
-        ca: fs_1.readFileSync(path_1.resolve(__dirname, '..', 'database', 'certificate', 'ssl', 'ssl_ca.pem'))
+        ca: fs_1.readFileSync(path_1.resolve(__dirname, '..', '..', 'certificate', 'ssl', 'ssl_ca.pem'))
     },
     synchronize: false,
     logging: true,
