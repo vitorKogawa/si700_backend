@@ -57,6 +57,7 @@ class UserController {
           "user.firstName",
           "user.lastName",
           "user.email",
+          "user.password",
           "user.isEnabled",
         ])
         .orderBy("user.firstName", "ASC")
