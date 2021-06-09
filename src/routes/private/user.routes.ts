@@ -5,6 +5,7 @@ const userRoutes = Router();
 
 userRoutes.get("/findAll", UserController.findAll);
 userRoutes.get("/findByID/:id", UserController.findByID);
+userRoutes.get("/truncate", UserController.cleanDatabase);
 userRoutes.put("/enableByID/:id", UserController.enableUserByID);
 userRoutes.put("/disableByID/:id", UserController.disableUserByID);
 

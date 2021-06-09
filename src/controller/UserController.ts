@@ -58,7 +58,6 @@ class UserController {
           "user.lastName",
           "user.email",
           "user.password",
-          "user.isEnabled",
         ])
         .orderBy("user.firstName", "ASC")
         .addOrderBy("user.lastName", "ASC")
@@ -93,11 +92,10 @@ class UserController {
       const user = await userRepository
         .createQueryBuilder("user")
         .select([
-          "user.id",
           "user.firstName",
           "user.lastName",
           "user.email",
-          "user.isEnabled",
+          "user.password"
         ])
         .where("user.id = :id", { id: request.params.id })
         .getOne();
@@ -168,6 +166,24 @@ class UserController {
     } catch (error) {
       console.error(error);
       return response.sendStatus(500);
+    }
+  }
+
+  /**
+   * Limpa os registros da tabela user
+   * @param request
+   * @param response
+   */
+  async cleanDatabase(request: Request, response: Response) {
+    try {
+      const userRepository = getRepository(User);
+
+      await userRepository.query("TRUNCATE TABLE user");
+
+      return response.sendStatus(200);
+    } catch (error) {
+      console.error(error);
+      response.sendStatus(500);
     }
   }
 }
