@@ -58,6 +58,7 @@ class UserController {
           "user.lastName",
           "user.email",
           "user.password",
+          "user.isEnabled"
         ])
         .orderBy("user.firstName", "ASC")
         .addOrderBy("user.lastName", "ASC")
@@ -95,7 +96,8 @@ class UserController {
           "user.firstName",
           "user.lastName",
           "user.email",
-          "user.password"
+          "user.password",
+          "user.isEnabled"
         ])
         .where("user.id = :id", { id: request.params.id })
         .getOne();
