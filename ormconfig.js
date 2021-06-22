@@ -12,7 +12,7 @@ module.exports = {
     host: process.env.TYPEORM_HOST,
     port: 3306,
     ssl: {
-        ca: readFileSync(resolve(__dirname, '..', '..', 'certificate', 'ssl', 'ssl_ca.pem'))
+        ca: readFileSync(resolve(__dirname, 'certificate', 'ssl', 'ssl_ca.pem'))
     },
     synchronize: false,
     logging: true,
@@ -20,7 +20,7 @@ module.exports = {
     migrations: ["src/migration/**/*.ts"],
     subscribers: ["src/subscriber/**/*.ts"],
     cli: {
-        entitiesDir: "src/entity",
+        entitiesDir: "src/entity/entity",
         migrationsDir: "src/migration",
         subscribersDir: "src/subscriber",
     },
