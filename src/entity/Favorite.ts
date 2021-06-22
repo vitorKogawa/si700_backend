@@ -1,5 +1,4 @@
-import {Entity, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column} from "typeorm";
-import { User } from './User';
+import {Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column} from "typeorm";
 
 @Entity()
 class Favorite {

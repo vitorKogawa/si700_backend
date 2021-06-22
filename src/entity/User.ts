@@ -6,11 +6,9 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from "typeorm";
 import { hashSync } from "bcryptjs";
 import { jwtConfig } from './../config/jwt.config';
-import { Favorite } from './Favorite'
 
 @Entity()
 class User {

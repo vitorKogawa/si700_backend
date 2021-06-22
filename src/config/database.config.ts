@@ -1,6 +1,7 @@
 import "./env.config";
 import { ConnectionOptions } from 'typeorm'
 import { User } from "../entity/User";
+import { Favorite } from '../entity/Favorite';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -19,7 +20,7 @@ const development = {
   },
   synchronize: false,
   logging: true,
-  entities: [User]
+  entities: [User, Favorite]
 } as ConnectionOptions;
 
 /**
