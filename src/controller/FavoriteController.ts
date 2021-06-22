@@ -9,7 +9,7 @@ class FavoriteController{
     
             const { user_id, book_id } = request.body;
     
-            await favoriteRepository.save({ user_id, book_id});
+            await favoriteRepository.save(favoriteRepository.create({ user_id, book_id}));
     
             return response.sendStatus(200);
             
