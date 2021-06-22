@@ -7,10 +7,10 @@ class Favorite {
     id: number;
     
     @Column()
-    user_id: number;
+    user_id: string;
 
     @Column()
-    book_id: number;
+    book_id: string;
 
     @CreateDateColumn()
     created_at: Date;

@@ -7,9 +7,9 @@ class FavoriteController{
         try {
             const favoriteRepository = getRepository(Favorite);
     
-            const { id, user_id, book_id } = request.body;
+            const { user_id, book_id } = request.body;
     
-            await favoriteRepository.save({id, user_id, book_id});
+            await favoriteRepository.save({ user_id, book_id});
     
             return response.sendStatus(200);
             
